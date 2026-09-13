@@ -9,10 +9,27 @@ jobs:
        - name: Install NodeJS
          uses: actions/setup-node@v3
          with:
-          node-version: 18
+          node-version: 24
        - name: Install Dependencies
          run: npm ci
        - name: Run Tests
          run: npm test
+
+  Deploy:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Get code
+         uses: actions/checkout@v3
+       - name: Install NodeJS
+         uses: actions/setup-node@v3
+         with:
+          node-version: 24
+       - name: Install Dependencies
+         run: npm ci
+       - name: Build Project
+         run: npm run build
+       - name: Deploy to Server
+         run: echo "Deploying the project..."
+
 
 
